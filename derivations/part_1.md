@@ -1,223 +1,177 @@
 # Differential Geometry Notes
 
----
+## sketch of the proof:
 
-# Arc Length of a Circle
+let $\gamma(t) = p + r(\cos t + \sin t)$, such that
 
-## Sketch of the Proof
+$$\gamma(t) = p + r \cos t \, \vec{x} + r \sin t \, \vec{y}$$
 
-Let
+the derivative is then:
 
-$$
-\gamma(t)=p+r(\cos t+\sin t),
-$$
+$$\gamma'(t) = -r \sin t \, \vec{x} + r \cos t \, \vec{y}$$
 
-or equivalently,
+so
 
-$$
-\gamma(t)=p+r\cos t\,\vec{x}+r\sin t\,\vec{y}.
-$$
+$$|\gamma'(t)| = \sqrt{r^2 (\cos^2 t + \sin^2 t)} = r$$
 
-Differentiating,
+This means the integral would then be
 
-$$
-\gamma'(t)=-r\sin t\,\vec{x}+r\cos t\,\vec{y}.
-$$
-
-Hence,
-
-$$
-|\gamma'(t)|
-=
-\sqrt{r^2(\cos^2 t+\sin^2 t)}
-=
-r.
-$$
-
-Therefore,
-
-$$
-\int_0^{2\pi} |\gamma'(t)|\,dt
-=
-\int_0^{2\pi} r\,dt
-=
-2\pi r.
-$$
+$$\int_0^{2\pi} r \, dt = 2 \pi r$$
 
 ---
 
-# Differentiating $\sigma(\tau(s)) = s$
+## differentiating $\sigma(\tau(s)) = 1$
 
-A regular curve $\gamma$ is said to be parametrized by arc length if
+a regular curve $\gamma$ is said to parameterize if $|\dot{\gamma}| = 1$. This means the unit speed is constant, such that the arc length of $\gamma$, $L(\gamma)$, is simply $b - a$.
 
-$$
-|\dot{\gamma}|=1.
-$$
+### Proving Theorem 2.6
 
-Hence the speed is constant, and the arc length of $\gamma$ satisfies
+Let $\gamma : I = (a,b) \to \mathbb{R}^n$ be a regular $C^1$-curve in $\mathbb{R}^n$. Then the image $\gamma(I)$ of $\gamma$ can be parameterized by its arc length.
 
-$$
-L(\gamma)=b-a.
-$$
+definition $\gamma(a,b) = (0, L)$ is simply because
 
-## Theorem 2.6
+$$\int_a^b \to \int_a^a + \int_a^b$$
 
-> Let
->
-> $$
-> \gamma:I=(a,b)\rightarrow\mathbb{R}^n
-> $$
->
-> be a regular $C^1$-curve in $\mathbb{R}^n$. Then the image $\gamma(I)$ can be parametrized by its arc length.
+Let $\tau : (0, L) \to (a,b)$ be the inverse of $\sigma$, such that $\sigma(\tau) = s$.
 
-### Sketch
+Differentiating, we have
 
-The interval $(0,L)$ arises naturally since
+$$\frac{d}{ds}\sigma(\tau(s)) = \frac{d\sigma}{d\tau} \cdot \frac{d\tau}{ds} = \sigma'(\tau) \cdot \dot{\tau}$$
 
-$$
-L=\int_a^b |\gamma'(u)|\,du.
-$$
+$\sigma'(\tau) = 1$ by definition,
 
-Hence,
+and $\dot{\tau} = 1$ by definition of inverse function, $\frac{d}{ds}f^{-1} = \frac{1}{f'(f^{-1})}$, such that
 
-$$
-\sigma(a)=0,
-\qquad
-\sigma(b)=L.
-$$
+$$\dot{\tau} = \frac{1}{\sigma'(\tau)}$$
 
-## Proof
+so that
 
-Let
-
-$$
-\tau:(0,L)\rightarrow(a,b)
-$$
-
-be the inverse of $\sigma$, so that
-
-$$
-\sigma(\tau(s))=s.
-$$
-
-Differentiating both sides with respect to $s$,
-
-$$
-\frac{d}{ds}\sigma(\tau(s))
-=
-\frac{d\sigma}{d\tau}\frac{d\tau}{ds}.
-$$
-
-Applying the chain rule,
-
-$$
-=
-\sigma'(\tau)\,\dot{\tau}.
-$$
-
-Since $\tau=\sigma^{-1}$,
-
-$$
-\dot{\tau}=\frac{1}{\sigma'(\tau)}.
-$$
-
-Therefore,
-
-$$
-\frac{d}{ds}\sigma(\tau(s))
-=
-\sigma'(\tau)\cdot\frac{1}{\sigma'(\tau)}
-=
-1.
-$$
-
-This completes the proof.
+$$\frac{d}{ds}\sigma(\tau(s)) = \frac{\sigma'(\tau)}{\sigma'(\tau)} = 1$$
 
 ---
 
-# Introduction to Frenet Theory for $\mathbb{R}^2$
+## Introduction to Frenet theory for $\mathbb{R}^2$
 
-Let
+For a regular planar curve $\gamma: I \to \mathbb{R}^2$ parametrised by arc length, we define its tangent $T$ along $\gamma$ by
 
-$$
-\gamma:I\rightarrow\mathbb{R}^2
-$$
+$$T(s) = \dot{\gamma}(s)$$
 
-be a regular planar curve parametrized by arc length.
+and its normal $N$
 
-## Tangent Vector
+$$N(s) = R \circ T(s) = R(T(s))$$
 
-The tangent vector is defined by
+where $R: \begin{bmatrix} a \\ b \end{bmatrix} \mapsto \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix} \begin{bmatrix} a \\ b \end{bmatrix}$
 
-$$
-T(s)=\dot{\gamma}(s).
-$$
+by definition, the set $\{T,N\}$ is orthonormal.
 
-## Normal Vector
+Let $\gamma$ be a regular $C^2$ curve parameterized by arc length. The curvature $\kappa : I \to \mathbb{R}$ is
 
-The normal vector is defined by
+$$\kappa(s) = \langle \dot{T}, N \rangle = \ddot{\gamma}^i N_i$$
 
-$$
-N(s)=R\circ T(s)=R(T(s)),
-$$
+such that we can define the Frenet frame
 
-where
+$$\begin{bmatrix} \dot{T} \\ \dot{N} \end{bmatrix} = \begin{bmatrix} 0 & \kappa \\ -\kappa & 0 \end{bmatrix} \begin{bmatrix} T \\ N \end{bmatrix}$$
 
-$$
-R=
-\begin{bmatrix}
-0 & -1\\
-1 & 0
-\end{bmatrix}.
-$$
+### Proof:
 
-Consequently,
+use natural decomposition
 
-$$
-R
-\begin{bmatrix}
-a\\
-b
-\end{bmatrix}
-=
-\begin{bmatrix}
-0 & -1\\
-1 & 0
-\end{bmatrix}
-\begin{bmatrix}
-a\\
-b
-\end{bmatrix}.
-$$
+$$\dot{T} = \langle \dot{T}, T \rangle T + \langle \dot{T}, N \rangle N$$
+$$\dot{N} = \langle \dot{N}, T \rangle T + \langle \dot{N}, N \rangle N$$
 
-By construction, $\{T,N\}$ forms an orthonormal basis along the curve.
+We can pull the definition such that
+
+$$2 \langle \dot{T}, T \rangle = \frac{d}{ds} \langle T,T \rangle = 0$$
+$$2 \langle \dot{N}, N \rangle = \frac{d}{ds} \langle N,N \rangle = 0$$
+
+We are left with
+
+$$\dot{T} = \langle \dot{T}, N \rangle N$$
+$$\dot{N} = \langle \dot{N}, T \rangle T$$
+
+We recall that due to orthonormality, $\langle T, N \rangle = 0$. This means
+
+$$\frac{d}{ds} \langle T,N \rangle = 0$$
+
+$$\langle \dot{T}, N \rangle + \langle \dot{N}, T \rangle = 0$$
+
+$$\langle \dot{T}, N \rangle = -\langle \dot{N}, T \rangle$$
+
+using $\langle \dot{T}, N \rangle = \kappa$, then
+
+$$\dot{T} = \kappa N$$
+$$\dot{N} = -\kappa T$$
 
 ---
 
-## Curvature
+## Proof of $\kappa(s) = \frac{\det(\gamma', \gamma'')}{|\gamma'|^3}$
 
-Let $\gamma$ be a regular $C^2$-curve parametrized by arc length.
+We start with the definition of $\gamma(s)$. Now define point vector $Q(s) = \gamma(t(s))$
 
-Its curvature is defined as
+$$T(s) = \frac{d\gamma}{dt} \cdot \frac{dt}{ds}$$
 
-$$
-\kappa(s)=\langle\dot{T},N\rangle=\ddot{\gamma}^i N_i.
-$$
+use inverse function rule:
 
-The Frenet frame is therefore
+$$\frac{dt}{ds} = \frac{1}{\frac{ds}{dt}}$$
 
-$$
-\begin{bmatrix}
-\dot{T}\\
-\dot{N}
-\end{bmatrix}
-=
-\begin{bmatrix}
-0 & \kappa\\
--\kappa & 0
-\end{bmatrix}
-\begin{bmatrix}
-T\\
-N
-\end{bmatrix}.
-$$
+so that
+
+$$T(s) = \frac{\gamma'(t(s))}{|\gamma'(t(s))|}$$
+
+(also a sidenote now i see how the metric component in GR or QFT just surface naturally. wow)
+
+$$K(s) = \frac{d}{ds}\left(\frac{\gamma'(t(s))}{|\gamma'(t(s))|}\right)$$
+
+use chain rule
+
+$$\frac{dT}{ds} = \frac{dT}{du} \cdot \frac{du}{ds}$$
+
+$$\frac{dT}{du} = \frac{1}{|\gamma'|}$$
+
+so that
+
+$$\frac{dT}{du} \cdot \frac{du}{ds} = \frac{1}{|\gamma'|} \cdot \frac{\gamma'' |\gamma'| - \gamma' |\gamma'|'}{|\gamma'|^2}$$
+
+---
+
+use the fact that $|\gamma'(t(s))|' = s''$, such that
+
+$$s' = |\gamma'|$$
+
+$$s'' = |\gamma'|'$$
+
+$$\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dv} \cdot \frac{dv}{d\gamma}$$
+
+$$|\gamma'|' = \left(\sqrt{\gamma' \cdot \gamma'}\right)'$$
+
+let
+
+$y = \sqrt{u}$
+$u = \gamma' \cdot \gamma'$
+$v = \gamma$
+
+then
+
+$$\frac{dy}{du} = \frac{1}{2\sqrt{u}}$$
+
+$$\frac{du}{d\gamma'} = 2\gamma'$$
+
+$$\frac{d\gamma'}{d\gamma} = \gamma''$$
+
+$$|\gamma'|' = \frac{\gamma' \cdot \gamma''}{|\gamma'|}$$
+
+such that now
+
+$$K(s) = \frac{\gamma''(t(s)) |\gamma'(t(s))| - \gamma'(t(s)) \cdot \frac{\gamma' \cdot \gamma''}{|\gamma'|}}{|\gamma'(t(s))|^3}$$
+
+$$= \frac{\gamma''(t(s))}{|\gamma'(t(s))|^2} - \left(\frac{\gamma''}{|\gamma'(t(s))|^2} \cdot \frac{\gamma'}{|\gamma'(t(s))|}\right) \cdot \frac{\gamma'}{|\gamma'(t(s))|}$$
+
+then the curvature:
+
+$$\kappa(s) = |K(s)|$$
+
+$$= \frac{\sqrt{|\gamma'|^2 |\gamma''|^2 - (\gamma' \cdot \gamma'')^2}}{|\gamma'|^3}$$
+
+term above is simply the definition of cross product, so
+
+$$\kappa(s) = \frac{\det[\gamma', \gamma'']}{|\gamma'|^3}$$

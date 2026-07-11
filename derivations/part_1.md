@@ -15,23 +15,13 @@ $$
 or equivalently,
 
 $$
-\gamma(t)
-=
-p
-+
-r\cos t\,\vec{x}
-+
-r\sin t\,\vec{y}.
+\gamma(t)=p+r\cos t\,\vec{x}+r\sin t\,\vec{y}.
 $$
 
 Differentiating,
 
 $$
-\gamma'(t)
-=
--r\sin t\,\vec{x}
-+
-r\cos t\,\vec{y}.
+\gamma'(t)=-r\sin t\,\vec{x}+r\cos t\,\vec{y}.
 $$
 
 Hence,
@@ -39,7 +29,7 @@ Hence,
 $$
 |\gamma'(t)|
 =
-\sqrt{r^2\left(\cos^2 t+\sin^2 t\right)}
+\sqrt{r^2(\cos^2 t+\sin^2 t)}
 =
 r.
 $$
@@ -47,26 +37,18 @@ $$
 Therefore,
 
 $$
-\begin{aligned}
-L(\gamma)
-&=
-\int_0^{2\pi}
-|\gamma'(t)|
-\,dt \\[4pt]
-&=
-\int_0^{2\pi}
-r
-\,dt \\[4pt]
-&=
+\int_0^{2\pi} |\gamma'(t)|\,dt
+=
+\int_0^{2\pi} r\,dt
+=
 2\pi r.
-\end{aligned}
 $$
 
 ---
 
 # Differentiating $\sigma(\tau(s)) = s$
 
-A regular curve $\gamma$ is said to be **parametrized by arc length** if
+A regular curve $\gamma$ is said to be parametrized by arc length if
 
 $$
 |\dot{\gamma}|=1.
@@ -78,8 +60,6 @@ $$
 L(\gamma)=b-a.
 $$
 
----
-
 ## Theorem 2.6
 
 > Let
@@ -88,25 +68,14 @@ $$
 > \gamma:I=(a,b)\rightarrow\mathbb{R}^n
 > $$
 >
-> be a regular $C^1$-curve in $\mathbb{R}^n$. Then the image
-> $\gamma(I)$ can be parametrized by its arc length.
+> be a regular $C^1$-curve in $\mathbb{R}^n$. Then the image $\gamma(I)$ can be parametrized by its arc length.
 
 ### Sketch
 
-The interval
+The interval $(0,L)$ arises naturally since
 
 $$
-(0,L)
-$$
-
-arises naturally since
-
-$$
-L
-=
-\int_a^b
-|\gamma'(u)|
-\,du.
+L=\int_a^b |\gamma'(u)|\,du.
 $$
 
 Hence,
@@ -116,8 +85,6 @@ $$
 \qquad
 \sigma(b)=L.
 $$
-
----
 
 ## Proof
 
@@ -130,19 +97,15 @@ $$
 be the inverse of $\sigma$, so that
 
 $$
-\sigma(\tau(s))
-=
-s.
+\sigma(\tau(s))=s.
 $$
 
 Differentiating both sides with respect to $s$,
 
 $$
-\frac{d}{ds}
-\sigma(\tau(s))
+\frac{d}{ds}\sigma(\tau(s))
 =
-\frac{d\sigma}{d\tau}
-\frac{d\tau}{ds}.
+\frac{d\sigma}{d\tau}\frac{d\tau}{ds}.
 $$
 
 Applying the chain rule,
@@ -155,24 +118,17 @@ $$
 Since $\tau=\sigma^{-1}$,
 
 $$
-\dot{\tau}
-=
-\frac{1}{\sigma'(\tau)}.
+\dot{\tau}=\frac{1}{\sigma'(\tau)}.
 $$
 
 Therefore,
 
 $$
-\begin{aligned}
-\frac{d}{ds}
-\sigma(\tau(s))
-&=
-\sigma'(\tau)
-\cdot
-\frac{1}{\sigma'(\tau)} \\[4pt]
-&=
+\frac{d}{ds}\sigma(\tau(s))
+=
+\sigma'(\tau)\cdot\frac{1}{\sigma'(\tau)}
+=
 1.
-\end{aligned}
 $$
 
 This completes the proof.
@@ -194,9 +150,7 @@ be a regular planar curve parametrized by arc length.
 The tangent vector is defined by
 
 $$
-T(s)
-=
-\dot{\gamma}(s).
+T(s)=\dot{\gamma}(s).
 $$
 
 ## Normal Vector
@@ -204,18 +158,13 @@ $$
 The normal vector is defined by
 
 $$
-N(s)
-=
-R\circ T(s)
-=
-R(T(s)),
+N(s)=R\circ T(s)=R(T(s)),
 $$
 
 where
 
 $$
-R
-=
+R=
 \begin{bmatrix}
 0 & -1\\
 1 & 0
@@ -241,13 +190,7 @@ b
 \end{bmatrix}.
 $$
 
-By construction,
-
-$$
-\{T,N\}
-$$
-
-forms an orthonormal basis along the curve.
+By construction, $\{T,N\}$ forms an orthonormal basis along the curve.
 
 ---
 
@@ -258,19 +201,15 @@ Let $\gamma$ be a regular $C^2$-curve parametrized by arc length.
 Its curvature is defined as
 
 $$
-\kappa(s)
-=
-\langle\dot T,N\rangle
-=
-\ddot{\gamma}^iN_i.
+\kappa(s)=\langle\dot{T},N\rangle=\ddot{\gamma}^i N_i.
 $$
 
 The Frenet frame is therefore
 
 $$
 \begin{bmatrix}
-\dot T\\
-\dot N
+\dot{T}\\
+\dot{N}
 \end{bmatrix}
 =
 \begin{bmatrix}
